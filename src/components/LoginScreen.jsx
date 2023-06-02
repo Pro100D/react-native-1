@@ -10,6 +10,7 @@ import {
 } from "react-native";
 
 export default function LoginScreen() {
+  console.log("asd");
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Увійти</Text>
