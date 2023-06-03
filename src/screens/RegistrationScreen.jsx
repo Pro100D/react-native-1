@@ -2,12 +2,11 @@ import {
   Image,
   KeyboardAvoidingView,
   Platform,
-  Pressable,
   StyleSheet,
   Text,
   TextInput,
-  TouchableWithoutFeedback,
   View,
+  TouchableOpacity,
 } from "react-native";
 import bacgraundFon from "../../images/Rectangle22.png";
 
@@ -19,33 +18,18 @@ export default function RegistrationScreen() {
       <KeyboardAvoidingView
         behavior={Platform.OS == "ios" ? "padding" : "height"}
       >
-        <TouchableWithoutFeedback>
-          <View style={styles.flexContainerInputs}>
-            <TextInput style={styles.input} placeholder="Логін" />
-            <TextInput
-              style={styles.input}
-              placeholder="Адреса електронної пошти"
-            />
-            <TextInput style={styles.input} placeholder="Пароль" />
-          </View>
-        </TouchableWithoutFeedback>
+        <View style={styles.flexContainerInputs}>
+          <TextInput style={styles.input} placeholder="Логін" />
+          <TextInput
+            style={styles.input}
+            placeholder="Адреса електронної пошти"
+          />
+          <TextInput style={styles.input} placeholder="Пароль" />
+        </View>
       </KeyboardAvoidingView>
-      <Pressable style={styles.buttonSubmit} title="Зареєстуватися">
-        <Text
-          style={{
-            fontSize: 16,
-            lineHeight: 19,
-            color: "#FFFFFF",
-            textAlign: "center",
-            paddingTop: 16,
-            paddingBottom: 16,
-            paddingLeft: 111.5,
-            paddingRight: 111.5,
-          }}
-        >
-          Зареєстуватися
-        </Text>
-      </Pressable>
+      <TouchableOpacity style={styles.buttonSubmit} title="Зареєстуватися">
+        <Text style={styles.buttonText}>Зареєстуватися</Text>
+      </TouchableOpacity>
       <Text style={styles.logInText}>Вже є акаунт? Увійти</Text>
     </View>
   );
@@ -101,6 +85,16 @@ const styles = StyleSheet.create({
   img: {
     position: "absolute",
     top: -60,
-    left: 127,
+    right: 136,
+  },
+  buttonText: {
+    fontSize: 16,
+    lineHeight: 19,
+    color: "#FFFFFF",
+    textAlign: "center",
+    paddingTop: 16,
+    paddingBottom: 16,
+    paddingLeft: 111.5,
+    paddingRight: 111.5,
   },
 });
