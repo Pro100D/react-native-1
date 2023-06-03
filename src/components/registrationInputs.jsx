@@ -1,39 +1,37 @@
 import { useState } from "react";
 import { TextInput } from "react-native";
 
-export const RegistrationInputs = ({ styles }) => {
-  const [focusedName, setFocusedName] = useState(false);
-  const [focusedEmail, setFocusedEmail] = useState(false);
+export const RegistrationInputs = ({ styles, focused, setFocused }) => {
   return (
     <>
       <TextInput
         onFocus={(e) => {
           if (e._dispatchInstances.memoizedProps.name === "name") {
-            setFocusedName(true);
+            setFocused("name");
           }
         }}
         onBlur={(e) => {
           if (e._dispatchInstances.memoizedProps.name === "name") {
-            setFocusedName(false);
+            setFocused("");
           }
         }}
         name="name"
-        style={focusedName ? styles.inputOnFocus : styles.inputOnBlur}
+        style={focused === "name" ? styles.inputOnFocus : styles.inputOnBlur}
         placeholder="Логін"
       />
       <TextInput
         onFocus={(e) => {
           if (e._dispatchInstances.memoizedProps.name === "email") {
-            setFocusedEmail(true);
+            setFocused("email");
           }
         }}
         onBlur={(e) => {
           if (e._dispatchInstances.memoizedProps.name === "email") {
-            setFocusedEmail(false);
+            setFocused("");
           }
         }}
         name="email"
-        style={focusedEmail ? styles.inputOnFocus : styles.inputOnBlur}
+        style={focused === "email" ? styles.inputOnFocus : styles.inputOnBlur}
         placeholder="Адреса електронної пошти"
       />
     </>

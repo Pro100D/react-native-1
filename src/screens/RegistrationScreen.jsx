@@ -13,7 +13,7 @@ import { ButtonSubmit } from "../components/buttonSubmit";
 import { UserImage } from "../components/userImage";
 
 export default function RegistrationScreen() {
-  const [focusedPassword, setFocusedPassword] = useState(false);
+  const [focused, setFocused] = useState("");
 
   return (
     <View style={styles.container}>
@@ -24,19 +24,27 @@ export default function RegistrationScreen() {
       >
         <TouchableWithoutFeedback>
           <View style={styles.flexContainerInputs}>
-            <RegistrationInputs styles={styles} />
+            <RegistrationInputs
+              styles={styles}
+              focused={focused}
+              setFocused={setFocused}
+            />
             <TextInput
-              style={focusedPassword ? styles.inputOnFocus : styles.inputOnBlur}
+              style={
+                focused === "password"
+                  ? styles.inputOnFocus
+                  : styles.inputOnBlur
+              }
               placeholder="Пароль"
               name="password"
               onFocus={(e) => {
                 if (e._dispatchInstances.memoizedProps.name === "password") {
-                  setFocusedPassword(true);
+                  setFocused("password");
                 }
               }}
               onBlur={(e) => {
                 if (e._dispatchInstances.memoizedProps.name === "password") {
-                  setFocusedPassword(false);
+                  setFocused("");
                 }
               }}
             />
