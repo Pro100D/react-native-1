@@ -27,20 +27,7 @@ export default function LoginScreen() {
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
       <Pressable style={styles.buttonSubmit}>
-        <Text
-          style={{
-            fontSize: 16,
-            lineHeight: 19,
-            color: "#FFFFFF",
-            textAlign: "center",
-            paddingTop: 16,
-            paddingBottom: 16,
-            paddingLeft: 111.5,
-            paddingRight: 111.5,
-          }}
-        >
-          Увійти
-        </Text>
+        <Text style={styles.buttonText}>Увійти</Text>
       </Pressable>
       <Text style={styles.logInText}>Немає акаунту? Зареєструватися</Text>
     </View>
@@ -91,5 +78,15 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 19,
     textAlign: "center",
+  },
+  buttonText: {
+    fontSize: 16,
+    lineHeight: 19,
+    color: "#FFFFFF",
+    textAlign: "center",
+    paddingTop: 16,
+    paddingBottom: 16,
+    paddingLeft: 111.5,
+    paddingRight: 111.5,
   },
 });
