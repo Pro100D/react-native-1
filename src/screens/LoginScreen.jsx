@@ -1,13 +1,13 @@
 import {
   KeyboardAvoidingView,
   Platform,
-  Pressable,
   StyleSheet,
   Text,
-  TextInput,
   TouchableWithoutFeedback,
   View,
 } from "react-native";
+import { RegistrationInputs } from "../components/registrationInputs";
+import { ButtonSubmit } from "../components/buttonSubmit";
 
 export default function LoginScreen() {
   return (
@@ -18,17 +18,11 @@ export default function LoginScreen() {
       >
         <TouchableWithoutFeedback>
           <View style={styles.flexContainerInputs}>
-            <TextInput
-              style={styles.input}
-              placeholder="Адреса електронної пошти"
-            />
-            <TextInput style={styles.input} placeholder="Пароль" />
+            <RegistrationInputs styles={styles} />
           </View>
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
-      <Pressable style={styles.buttonSubmit}>
-        <Text style={styles.buttonText}>Увійти</Text>
-      </Pressable>
+      <ButtonSubmit styles={styles} title={"Увійти"} />
       <Text style={styles.logInText}>Немає акаунту? Зареєструватися</Text>
     </View>
   );

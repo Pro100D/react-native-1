@@ -1,35 +1,49 @@
+import { useState } from "react";
 import {
-  Image,
   KeyboardAvoidingView,
   Platform,
   StyleSheet,
   Text,
   TextInput,
+  TouchableWithoutFeedback,
   View,
-  TouchableOpacity,
 } from "react-native";
-import bacgraundFon from "../../images/Rectangle22.png";
+import { RegistrationInputs } from "../components/registrationInputs";
+import { ButtonSubmit } from "../components/buttonSubmit";
+import { UserImage } from "../components/userImage";
 
 export default function RegistrationScreen() {
+  const [focusedPassword, setFocusedPassword] = useState(false);
+
   return (
     <View style={styles.container}>
-      <Image source={bacgraundFon} style={styles.img}></Image>
+      <UserImage styles={styles} />
       <Text style={styles.title}>Реєстрація</Text>
       <KeyboardAvoidingView
         behavior={Platform.OS == "ios" ? "padding" : "height"}
       >
-        <View style={styles.flexContainerInputs}>
-          <TextInput style={styles.input} placeholder="Логін" />
-          <TextInput
-            style={styles.input}
-            placeholder="Адреса електронної пошти"
-          />
-          <TextInput style={styles.input} placeholder="Пароль" />
-        </View>
+        <TouchableWithoutFeedback>
+          <View style={styles.flexContainerInputs}>
+            <RegistrationInputs styles={styles} />
+            <TextInput
+              style={focusedPassword ? styles.inputOnFocus : styles.inputOnBlur}
+              placeholder="Пароль"
+              name="password"
+              onFocus={(e) => {
+                if (e._dispatchInstances.memoizedProps.name === "password") {
+                  setFocusedPassword(true);
+                }
+              }}
+              onBlur={(e) => {
+                if (e._dispatchInstances.memoizedProps.name === "password") {
+                  setFocusedPassword(false);
+                }
+              }}
+            />
+          </View>
+        </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
-      <TouchableOpacity style={styles.buttonSubmit} title="Зареєстуватися">
-        <Text style={styles.buttonText}>Зареєстуватися</Text>
-      </TouchableOpacity>
+      <ButtonSubmit styles={styles} title={"Зареєстуватися"} />
       <Text style={styles.logInText}>Вже є акаунт? Увійти</Text>
     </View>
   );
@@ -48,6 +62,11 @@ const styles = StyleSheet.create({
 
     position: "relative",
   },
+  icon: {
+    position: "absolute",
+    bottom: 14,
+    left: 107,
+  },
   flexContainerInputs: {
     gap: 16,
 
@@ -60,13 +79,22 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginBottom: 33,
   },
-  input: {
+  inputOnBlur: {
     backgroundColor: "#F6F6F6",
     borderWidth: 1,
     borderColor: "#E8E8E8",
     borderRadius: 8,
 
     padding: 16,
+  },
+  inputOnFocus: {
+    backgroundColor: "#F6F6F6",
+    borderWidth: 1,
+    borderRadius: 8,
+
+    padding: 16,
+
+    borderColor: "#FF6C00",
   },
   buttonSubmit: {
     backgroundColor: "#FF6C00",
