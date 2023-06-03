@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { RegistrationInputs } from "../components/RegistrationInput";
 import { ButtonSubmit } from "../components/SubmitButton";
-import { UserImage } from "../components/UserImage";
+import { UserImage } from "../components/ImageUser";
 
 export default function RegistrationScreen() {
   const [focused, setFocused] = useState("");
