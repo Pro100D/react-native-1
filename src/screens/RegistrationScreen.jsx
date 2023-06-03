@@ -8,9 +8,9 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
-import { RegistrationInputs } from "../components/registrationInputs";
-import { ButtonSubmit } from "../components/buttonSubmit";
-import { UserImage } from "../components/userImage";
+import { RegistrationInputs } from "../components/RegistrationInputs";
+import { ButtonSubmit } from "../components/ButtonSubmit";
+import { UserImage } from "../components/UserImage";
 
 export default function RegistrationScreen() {
   const [focused, setFocused] = useState("");
@@ -24,28 +24,26 @@ export default function RegistrationScreen() {
       >
         <TouchableWithoutFeedback>
           <View style={styles.flexContainerInputs}>
-            <RegistrationInputs
-              styles={styles}
-              focused={focused}
-              setFocused={setFocused}
-            />
+            <RegistrationInputs focused={focused} setFocused={setFocused} />
             <TextInput
-              style={
-                focused === "password"
-                  ? styles.inputOnFocus
-                  : styles.inputOnBlur
-              }
+              style={[
+                {
+                  backgroundColor: "#F6F6F6",
+                  borderWidth: 1,
+                  borderColor: "#E8E8E8",
+                  borderRadius: 8,
+
+                  padding: 16,
+                },
+                focused === "password" && { borderColor: "#FF6C00" },
+              ]}
               placeholder="Пароль"
               name="password"
-              onFocus={(e) => {
-                if (e._dispatchInstances.memoizedProps.name === "password") {
-                  setFocused("password");
-                }
+              onFocus={() => {
+                setFocused("password");
               }}
-              onBlur={(e) => {
-                if (e._dispatchInstances.memoizedProps.name === "password") {
-                  setFocused("");
-                }
+              onBlur={() => {
+                setFocused("");
               }}
             />
           </View>
@@ -87,23 +85,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginBottom: 33,
   },
-  inputOnBlur: {
-    backgroundColor: "#F6F6F6",
-    borderWidth: 1,
-    borderColor: "#E8E8E8",
-    borderRadius: 8,
 
-    padding: 16,
-  },
-  inputOnFocus: {
-    backgroundColor: "#F6F6F6",
-    borderWidth: 1,
-    borderRadius: 8,
-
-    padding: 16,
-
-    borderColor: "#FF6C00",
-  },
   buttonSubmit: {
     backgroundColor: "#FF6C00",
     borderRadius: 100,

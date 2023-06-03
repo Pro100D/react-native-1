@@ -1,37 +1,48 @@
-import { useState } from "react";
 import { TextInput } from "react-native";
 
-export const RegistrationInputs = ({ styles, focused, setFocused }) => {
+export const RegistrationInputs = ({ focused, setFocused }) => {
   return (
     <>
       <TextInput
-        onFocus={(e) => {
-          if (e._dispatchInstances.memoizedProps.name === "name") {
-            setFocused("name");
-          }
+        onFocus={() => {
+          setFocused("name");
         }}
-        onBlur={(e) => {
-          if (e._dispatchInstances.memoizedProps.name === "name") {
-            setFocused("");
-          }
+        onBlur={() => {
+          setFocused("");
         }}
         name="name"
-        style={focused === "name" ? styles.inputOnFocus : styles.inputOnBlur}
+        style={[
+          {
+            backgroundColor: "#F6F6F6",
+            borderWidth: 1,
+            borderColor: "#E8E8E8",
+            borderRadius: 8,
+
+            padding: 16,
+          },
+          focused === "name" && { borderColor: "#FF6C00" },
+        ]}
         placeholder="Логін"
       />
       <TextInput
-        onFocus={(e) => {
-          if (e._dispatchInstances.memoizedProps.name === "email") {
-            setFocused("email");
-          }
+        onFocus={() => {
+          setFocused("email");
         }}
-        onBlur={(e) => {
-          if (e._dispatchInstances.memoizedProps.name === "email") {
-            setFocused("");
-          }
+        onBlur={() => {
+          setFocused("");
         }}
         name="email"
-        style={focused === "email" ? styles.inputOnFocus : styles.inputOnBlur}
+        style={[
+          {
+            backgroundColor: "#F6F6F6",
+            borderWidth: 1,
+            borderColor: "#E8E8E8",
+            borderRadius: 8,
+
+            padding: 16,
+          },
+          focused === "email" && { borderColor: "#FF6C00" },
+        ]}
         placeholder="Адреса електронної пошти"
       />
     </>

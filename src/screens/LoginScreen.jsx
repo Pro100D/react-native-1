@@ -6,10 +6,12 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
-import { RegistrationInputs } from "../components/registrationInputs";
-import { ButtonSubmit } from "../components/buttonSubmit";
+import { RegistrationInputs } from "../components/RegistrationInputs";
+import { ButtonSubmit } from "../components/ButtonSubmit";
+import { useState } from "react";
 
 export default function LoginScreen() {
+  const [focused, setFocused] = useState("");
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Увійти</Text>
@@ -18,7 +20,11 @@ export default function LoginScreen() {
       >
         <TouchableWithoutFeedback>
           <View style={styles.flexContainerInputs}>
-            <RegistrationInputs styles={styles} />
+            <RegistrationInputs
+              styles={styles}
+              focused={focused}
+              setFocused={setFocused}
+            />
           </View>
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
