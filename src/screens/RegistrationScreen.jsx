@@ -8,8 +8,8 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
-import { RegistrationInputs } from "../components/RegistrationInputs";
-import { ButtonSubmit } from "../components/ButtonSubmit";
+import { RegistrationInputs } from "../components/RegistrationInput";
+import { ButtonSubmit } from "../components/SubmitButton";
 import { UserImage } from "../components/UserImage";
 
 export default function RegistrationScreen() {

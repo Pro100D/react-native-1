@@ -6,8 +6,8 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
-import { RegistrationInputs } from "../components/RegistrationInputs";
-import { ButtonSubmit } from "../components/ButtonSubmit";
+import { RegistrationInputs } from "../components/RegistrationInput";
+import { ButtonSubmit } from "../components/SubmitButton";
 import { useState } from "react";
 
 export default function LoginScreen() {
