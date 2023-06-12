@@ -29,11 +29,11 @@ export default function LoginScreen() {
       <Text style={styles.title}>Увійти</Text>
       <KeyboardAvoidingView
         behavior={Platform.OS == "ios" ? "padding" : "height"}
+        style={{ paddingVertical: -8 }}
       >
         <TouchableWithoutFeedback>
-          <View style={styles.flexContainerInputs}>
+          <View>
             <RegistrationInputs
-              styles={styles}
               focused={focused}
               setFocused={setFocused}
               password={password}
@@ -73,14 +73,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginBottom: 33,
   },
-  input: {
-    backgroundColor: "#F6F6F6",
-    borderWidth: 1,
-    borderColor: "#E8E8E8",
-    borderRadius: 8,
 
-    padding: 16,
-  },
   buttonSubmit: {
     backgroundColor: "#FF6C00",
     borderRadius: 100,
@@ -88,6 +81,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 19,
     marginBottom: 16,
+    marginTop: 43,
   },
   logInText: {
     color: "#1B4371",

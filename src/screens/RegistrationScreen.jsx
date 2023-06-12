@@ -49,21 +49,11 @@ export default function RegistrationScreen() {
             onChangeText={setName}
             value={name}
             name="name"
-            style={[
-              {
-                marginVertical: 8,
-                backgroundColor: "#F6F6F6",
-                borderWidth: 1,
-                borderColor: "#E8E8E8",
-                borderRadius: 8,
-
-                padding: 16,
-              },
-              focused === "name" && {
-                borderColor: "#FF6C00",
-                backgroundColor: "#FFFFFF",
-              },
-            ]}
+            style={
+              focused === "name"
+                ? { ...styles.inputs, ...styles.inputsOnFocus }
+                : styles.inputs
+            }
             placeholder="Логін"
           />
           <RegistrationInputs
@@ -145,4 +135,16 @@ const styles = StyleSheet.create({
     paddingLeft: 111.5,
     paddingRight: 111.5,
   },
+  inputs: {
+    position: "relative",
+    backgroundColor: "#F6F6F6",
+    borderWidth: 1,
+    borderColor: "#E8E8E8",
+    borderRadius: 8,
+    marginVertical: 8,
+    padding: 16,
+    height: 50,
+  },
+
+  inputsOnFocus: { borderColor: "#FF6C00", backgroundColor: "#FFFFFF" },
 });
