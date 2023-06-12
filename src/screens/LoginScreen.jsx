@@ -12,6 +12,18 @@ import { useState } from "react";
 
 export default function LoginScreen() {
   const [focused, setFocused] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+
+  const onSubmit = (e) => {
+    const values = {
+      password,
+      email,
+    };
+    console.log(values);
+    setPassword("");
+    setEmail("");
+  };
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Увійти</Text>
@@ -24,11 +36,15 @@ export default function LoginScreen() {
               styles={styles}
               focused={focused}
               setFocused={setFocused}
+              password={password}
+              setPassword={setPassword}
+              email={email}
+              setEmail={setEmail}
             />
           </View>
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
-      <ButtonSubmit styles={styles} title={"Увійти"} />
+      <ButtonSubmit styles={styles} title={"Увійти"} onPress={onSubmit} />
       <Text style={styles.logInText}>Немає акаунту? Зареєструватися</Text>
     </View>
   );

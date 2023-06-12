@@ -5,7 +5,6 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  TouchableWithoutFeedback,
   View,
 } from "react-native";
 import { RegistrationInputs } from "../components/RegistrationInput";
@@ -14,42 +13,76 @@ import { UserImage } from "../components/ImageUser";
 
 export default function RegistrationScreen() {
   const [focused, setFocused] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const onSubmit = (e) => {
+    const values = {
+      name,
+      password,
+      email,
+    };
+    console.log(values);
+    setPassword("");
+    setEmail("");
+    setName("");
+  };
 
   return (
     <View style={styles.container}>
       <UserImage styles={styles} />
       <Text style={styles.title}>Реєстрація</Text>
-      <KeyboardAvoidingView
-        behavior={Platform.OS == "ios" ? "padding" : "height"}
-      >
-        <TouchableWithoutFeedback>
-          <View style={styles.flexContainerInputs}>
-            <RegistrationInputs focused={focused} setFocused={setFocused} />
-            <TextInput
-              style={[
-                {
-                  backgroundColor: "#F6F6F6",
-                  borderWidth: 1,
-                  borderColor: "#E8E8E8",
-                  borderRadius: 8,
 
-                  padding: 16,
-                },
-                focused === "password" && { borderColor: "#FF6C00" },
-              ]}
-              placeholder="Пароль"
-              name="password"
-              onFocus={() => {
-                setFocused("password");
-              }}
-              onBlur={() => {
-                setFocused("");
-              }}
-            />
-          </View>
-        </TouchableWithoutFeedback>
-      </KeyboardAvoidingView>
-      <ButtonSubmit styles={styles} title={"Зареєстуватися"} />
+      <View>
+        <KeyboardAvoidingView
+          behavior={Platform.OS == "ios" ? "padding" : "height"}
+          style={{ paddingVertical: -8 }}
+        >
+          <TextInput
+            onFocus={() => {
+              setFocused("name");
+            }}
+            onBlur={() => {
+              setFocused("");
+            }}
+            onChangeText={setName}
+            value={name}
+            name="name"
+            style={[
+              {
+                marginVertical: 8,
+                backgroundColor: "#F6F6F6",
+                borderWidth: 1,
+                borderColor: "#E8E8E8",
+                borderRadius: 8,
+
+                padding: 16,
+              },
+              focused === "name" && {
+                borderColor: "#FF6C00",
+                backgroundColor: "#FFFFFF",
+              },
+            ]}
+            placeholder="Логін"
+          />
+          <RegistrationInputs
+            focused={focused}
+            setFocused={setFocused}
+            password={password}
+            setPassword={setPassword}
+            email={email}
+            setEmail={setEmail}
+          />
+
+          <ButtonSubmit
+            styles={styles}
+            title={"Зареєстуватися"}
+            onPress={onSubmit}
+          />
+        </KeyboardAvoidingView>
+      </View>
+
       <Text style={styles.logInText}>Вже є акаунт? Увійти</Text>
     </View>
   );
@@ -73,11 +106,7 @@ const styles = StyleSheet.create({
     bottom: 14,
     left: 107,
   },
-  flexContainerInputs: {
-    gap: 16,
 
-    marginBottom: 43,
-  },
   title: {
     fontWeight: 500,
     fontSize: 30,
@@ -93,6 +122,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 19,
     marginBottom: 16,
+    marginTop: 43,
   },
   logInText: {
     color: "#1B4371",
